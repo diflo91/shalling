@@ -56,7 +56,12 @@ namespace Application_wild_student
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine(wildStudent);
                     Console.ResetColor();
-                    Console.WriteLine(" ");
+                    Console.WriteLine();
+                    Console.Write("    ");
+                    Console.WriteLine("1. Elève ");
+                    Console.Write("    ");
+                    Console.WriteLine("2. Cours");
+                    Console.WriteLine("");
                     Console.Write("    ");
                     Console.ForegroundColor= ConsoleColor.Red;
                     Console.Write("Saisie invalide. Veuillez saisir un nombre : ");
@@ -104,30 +109,6 @@ namespace Application_wild_student
                     ChoixOption = Console.ReadLine();
                     Console.Clear() ;   
                 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
