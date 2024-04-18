@@ -5,4 +5,4 @@
 
 ********************************** Screen de l'application ******************************
 
-![Shalling](asset/screen.jpg)
+![Shalling](asset/screen.png)
