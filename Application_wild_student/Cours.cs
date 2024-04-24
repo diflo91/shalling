@@ -9,16 +9,20 @@ namespace Application_wild_student
 {
     public class Cours
     {
-       /* private string MonCheminJson = "MonFichierJson.json";
+        private string MonCheminJson = "MonFichierJson.json";
         private string _NomCours;
        // private string _PonderationCours;
         private int _IdentifiantUniqueCours;
 
-
         public string NomCours
+        {
+            get { return _NomCours; }
+            set { _NomCours = value; }
+        }
+        public int Identifiant
             {
-               get { return _NomCours; }
-               set { _NomCours = value;}
+               get { return _IdentifiantUniqueCours; }
+               set { _IdentifiantUniqueCours = value;}
             }
 
         public Cours(string NewNomCours) 
@@ -40,10 +44,9 @@ namespace Application_wild_student
                  string jsonData = File.ReadAllText(MonCheminJson);
                  CoursExistant = JsonConvert.DeserializeObject<List<Cours>>(jsonData) ?? new List<Cours>();
 
-                foreach(var cour in CoursExistant)
+                foreach(var cours in CoursExistant)
                 {
-                    _IdentifiantUniqueCours = cour._IdentifiantUniqueCours + 1;
-
+                    _IdentifiantUniqueCours = cours.Identifiant + 1;
                 }
             }
 
@@ -57,7 +60,7 @@ namespace Application_wild_student
             Console.ReadLine();
             Console.ResetColor();
 
-        }*/
+        }
 
 
     }

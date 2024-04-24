@@ -7,6 +7,7 @@ namespace Application_wild_student
 {
     public class Eleves
     {
+
         private string MonCheminJson = "MonFichierJson.json";
         private int _IdentifiantUniqueEleve;
         private string _NomEleve;
@@ -51,13 +52,13 @@ namespace Application_wild_student
             set { _MoyenneNoteEleve = value; }
         }
 */
-        public Eleves(string NewNomEleve, string NewPrenomEleve, string NewDateDeNaissanceEleve/*, Dictionary<string, double> NewListDeNote*/)
-        {
+        /*public Eleves(/*string NewNomEleve, string NewPrenomEleve, string NewDateDeNaissanceEleve/*, Dictionary<string, double> NewListDeNote)*/
+        /*{
             _NomEleve = NewNomEleve;
             _PrenomEleve = NewPrenomEleve;
             _DateDeNaissanceEleve = NewDateDeNaissanceEleve;
            // _ListDeNote = NewListDeNote;
-        }
+        }*/
 
      
         public void GenIdentifiantEleve()
@@ -91,18 +92,67 @@ namespace Application_wild_student
                 }
             }
 
+
             
             listeEleves.Add(this);
 
             string jsonMiseAJour = JsonConvert.SerializeObject(listeEleves, Formatting.Indented);
 
             File.WriteAllText(MonCheminJson, jsonMiseAJour);
-            Console.ForegroundColor = ConsoleColor.Yellow;
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("    ");
             Console.Write("    ");
             Console.WriteLine($"Les données de l'élève ont été ajoutées et enregistrées avec succès.");
             Console.ResetColor();
             Console.ReadLine();
+        }
+
+
+
+
+
+
+
+
+
+
+        public void ListerEleve()
+        {
+            List<Eleves> listeEleves = new List<Eleves>();
+            if (File.Exists(MonCheminJson))
+            {
+                string jsonData = File.ReadAllText (MonCheminJson);
+                listeEleves = JsonConvert.DeserializeObject<List<Eleves>>(jsonData) ?? new List<Eleves>();
+                
+                foreach(var eleve in listeEleves)
+                {
+                    Console.Clear();
+                   
+                    Console.ForegroundColor = ConsoleColor.Cyan; 
+                    Console.WriteLine(Program.wildStudent);
+                    Console.WriteLine("    ");
+                    Console.Write("    ");
+                    Console.Write($"Identifiant:");Console.ResetColor();  Console.WriteLine($" {eleve.Identifiant}");
+                    Console.Write("    ");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write($"Nom:"); Console.ResetColor();  Console.WriteLine($" {eleve.NomEleve}");
+                    Console.Write("    ");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write($"Prénom:"); Console.ResetColor(); Console.WriteLine($" {eleve.PrenomEleve}");
+                    Console.Write("    ");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write($"Date de naissance:"); Console.ResetColor();  Console.WriteLine($" {eleve.DateDeNaissanceEleve}");
+                    Console.WriteLine(); // Ligne vide pour séparer les élèves
+                }
+
+
+
+            }
+
+
+
+
         }
 
     }

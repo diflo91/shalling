@@ -115,7 +115,10 @@ namespace Application_wild_student
                                 break;
                             } else if(ChoixOptionInt == 1) 
                             {
-                            
+                               Eleves eleves = new Eleves();
+                                eleves.ListerEleve();
+                                Console.Read();
+
                             }
                             else if (ChoixOptionInt == 2)
                             {
@@ -144,7 +147,7 @@ namespace Application_wild_student
 
 
 
-                                Eleves NewEleve = new Eleves(NomEleveSet, PreNomEleveSet, DateDeNaissanceEleveSet);
+                                Eleves NewEleve = new Eleves();
                                 NewEleve.AjouterEleve(NomEleveSet, PreNomEleveSet, DateDeNaissanceEleveSet);
                                // NewEleve.LireDonneesJson();
                                 NewEleve._EleveEnregistrerDonneesJson();
@@ -257,11 +260,11 @@ namespace Application_wild_student
                                 Console.Write("    ");
                                 string NomCoursSet = Console.ReadLine() ?? "";
                                 Console.Write("    ");
-                               /*
+                               
                                 Cours NewCours = new Cours(NomCoursSet);
                                 NewCours.AddCours(NomCoursSet);
                                 // NewEleve.LireDonneesJson();
-                                NewCours._CourSaveOnJsonFile();*/
+                                NewCours._CourSaveOnJsonFile();
 
                                 
                             }
