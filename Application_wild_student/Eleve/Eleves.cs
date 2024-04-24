@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 
-namespace Application_wild_student
+namespace Application_wild_student.Eleve
 {
     public class Eleves
     {
 
-        private string MonCheminJson = "MonFichierJson.json";
+
         private int _IdentifiantUniqueEleve;
         private string _NomEleve;
         private string _PrenomEleve;
         private string _DateDeNaissanceEleve;
         private string _Cours;
-        private Dictionary<string, double> _ListDeNote = new Dictionary<string, double>();
-        // private double _MoyenneNoteEleve;
+        private Dictionary<int, Dictionary<string, string>> _ListDeNote = new Dictionary<int, Dictionary<string, string>>();
+
 
         public int Identifiant
         {
@@ -41,31 +41,13 @@ namespace Application_wild_student
             set { _DateDeNaissanceEleve = value; }
         }
 
-        public string Cours
-        {
-            get { return _Cours; }
-            set { _Cours = value; }
-        }
-        /*
-                public Dictionary<string, double> ListeNote
-                {
-                    get { return _ListDeNote; }
-                    set { _ListDeNote = value; }
-                }
 
-                public double MoyenneNoteEleve
-                {
-                    get { return _MoyenneNoteEleve; }
-                    set { _MoyenneNoteEleve = value; }
-                }
-        */
-        /*public Eleves(/*string NewNomEleve, string NewPrenomEleve, string NewDateDeNaissanceEleve/*, Dictionary<string, double> NewListDeNote)*/
-        /*{
-            _NomEleve = NewNomEleve;
-            _PrenomEleve = NewPrenomEleve;
-            _DateDeNaissanceEleve = NewDateDeNaissanceEleve;
-           // _ListDeNote = NewListDeNote;
-        }*/
+
+        public Dictionary<int, Dictionary<string, string>> ListeNote
+        {
+            get { return _ListDeNote; }
+            set { _ListDeNote = value; }
+        }
 
 
         public void GenIdentifiantEleve()
@@ -74,16 +56,14 @@ namespace Application_wild_student
         }
 
 
-        public void AjouterEleve(string NewNomEleve, string NewPrenomEleve, string NewDateDeNaissanceEleve, string NewCours /*, Dictionary<string, double> NewListe, double NewMoyenneNoteEleve*/)
+        public void AjouterEleve(string NewNomEleve, string NewPrenomEleve, string NewDateDeNaissanceEleve, Dictionary<int, Dictionary<string, string>> NewListe/*, double NewMoyenneNoteEleve*/)
         {
             _NomEleve = NewNomEleve;
             _PrenomEleve = NewPrenomEleve;
             _DateDeNaissanceEleve = NewDateDeNaissanceEleve;
-            _Cours = NewCours;
+            _ListDeNote = NewListe;
 
         }
-
-
 
 
 
@@ -91,11 +71,11 @@ namespace Application_wild_student
         {
             List<Eleves> listeEleves = new List<Eleves>();
 
-            if (File.Exists(MonCheminJson))
+            if (File.Exists(GlobalAttribute.MonCheminJson))
             {
 
 
-                string jsonData = File.ReadAllText(MonCheminJson);
+                string jsonData = File.ReadAllText(GlobalAttribute.MonCheminJson);
                 listeEleves = JsonConvert.DeserializeObject<List<Eleves>>(jsonData) ?? new List<Eleves>();
                 foreach (var eleve in listeEleves)
                 {
@@ -109,44 +89,21 @@ namespace Application_wild_student
 
             string jsonMiseAJour = JsonConvert.SerializeObject(listeEleves, Formatting.Indented);
 
-            File.WriteAllText(MonCheminJson, jsonMiseAJour);
-
-
-
-
-
-
-
-
-
-
-
-
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("    ");
-            Console.Write("    ");
-            Console.WriteLine($"Les données de l'élève ont été ajoutées et enregistrées avec succès.");
-            Console.ResetColor();
-            Console.ReadLine();
+            File.WriteAllText(GlobalAttribute.MonCheminJson, jsonMiseAJour);
         }
-
-
 
         public void ListerEleve()
         {
 
-
-           
             List<Eleves> listeEleves = new List<Eleves>();
-            if (File.Exists(MonCheminJson))
+            if (File.Exists(GlobalAttribute.MonCheminJson))
             {
-                string jsonData = File.ReadAllText(MonCheminJson);
-                listeEleves = JsonConvert.DeserializeObject<List<Eleves>>(jsonData)?? new List<Eleves>();
-                
+                string jsonData = File.ReadAllText(GlobalAttribute.MonCheminJson);
+                listeEleves = JsonConvert.DeserializeObject<List<Eleves>>(jsonData) ?? new List<Eleves>();
+
                 foreach (var eleve in listeEleves)
                 {
-                   
-                   
+
                     Console.WriteLine("    ");
                     Console.Write("    ");
                     Console.Write($"Identifiant:"); Console.ResetColor(); Console.WriteLine($" {eleve.Identifiant}");
@@ -159,19 +116,11 @@ namespace Application_wild_student
                     Console.Write("    ");
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.Write($"Date de naissance:"); Console.ResetColor(); Console.WriteLine($" {eleve.DateDeNaissanceEleve}");
-                    
+
                     Console.WriteLine(); // Ligne vide pour séparer les élèves
-                   
+
                 }
-
-
-
             }
-
-
-
-
         }
-
     }
 }
