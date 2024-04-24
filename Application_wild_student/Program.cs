@@ -27,7 +27,7 @@ namespace Application_wild_student
 
             while (true)
             {
-                // Console.Clear();
+                // dConsole.Clear();
                 string wildStudent = Program.wildStudent;
                 string ChoixOption = Program.ChoixOption;
                 bool Correct = Program.Correct;
