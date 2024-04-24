@@ -115,7 +115,13 @@ namespace Application_wild_student
                                 break;
                             } else if(ChoixOptionInt == 1) 
                             {
-                            
+                                Console.Clear();
+
+                                Console.ForegroundColor = ConsoleColor.Cyan;
+                                Console.WriteLine(Program.wildStudent);
+                                Eleves eleves = new Eleves();
+                                eleves.ListerEleve();
+                                Console.Read();
                             }
                             else if (ChoixOptionInt == 2)
                             {
@@ -144,8 +150,8 @@ namespace Application_wild_student
 
 
 
-                                Eleves NewEleve = new Eleves(NomEleveSet, PreNomEleveSet, DateDeNaissanceEleveSet);
-                                NewEleve.AjouterEleve(NomEleveSet, PreNomEleveSet, DateDeNaissanceEleveSet);
+                                Eleves NewEleve = new Eleves();
+                                NewEleve.AjouterEleve(NomEleveSet, PreNomEleveSet, DateDeNaissanceEleveSet, AppreciationEleve);
                                // NewEleve.LireDonneesJson();
                                 NewEleve._EleveEnregistrerDonneesJson();
 
