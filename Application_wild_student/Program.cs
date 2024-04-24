@@ -23,7 +23,7 @@ namespace Application_wild_student
 
         static void Main(string[] args)
         {
-           
+
 
             while (true)
             {
@@ -66,18 +66,18 @@ namespace Application_wild_student
                     Console.WriteLine("[2]. Cours");
                     Console.WriteLine("");
                     Console.Write("    ");
-                    Console.ForegroundColor= ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write("Saisie invalide. Veuillez saisir un nombre : ");
                     Console.ResetColor();
                     ChoixOption = Console.ReadLine() ?? "";
                     Correct = int.TryParse(ChoixOption, out ChoixOptionInt);
-                } 
+                }
 
- // Affichage du menu eleve
+                // Affichage du menu eleve
 
-               if (ChoixOption == "1" && Correct)
+                if (ChoixOption == "1" && Correct)
                 {
-                    
+
 
                     while (true)
                     {
@@ -103,19 +103,23 @@ namespace Application_wild_student
                         Console.Write("    ");
                         Console.Write("Veuillez choisir l'option : ");
 
-                        OptionMenuEleve = Console.ReadLine()?? "";
+                        OptionMenuEleve = Console.ReadLine() ?? "";
                         isValideMenu = int.TryParse(OptionMenuEleve, out ChoixOptionInt);
 
 
                         if (isValideMenu)
                         {
-                            if(ChoixOptionInt == 5)
+                            if (ChoixOptionInt == 5)
                             {
                                 Console.Clear();
                                 break;
-                            } else if(ChoixOptionInt == 1) 
+                            }
+                            else if (ChoixOptionInt == 1)
                             {
-                               Eleves eleves = new Eleves();
+                                Console.Clear();
+                                Console.ForegroundColor = ConsoleColor.Cyan;
+                                Console.WriteLine(Program.wildStudent);
+                                Eleves eleves = new Eleves();
                                 eleves.ListerEleve();
                                 Console.Read();
 
@@ -130,26 +134,26 @@ namespace Application_wild_student
                                 Console.Write("    ");
                                 Console.Write("Saisissez le nom : ");
                                 Console.Write("    ");
-                                string NomEleveSet = Console.ReadLine()?? "";
+                                string NomEleveSet = Console.ReadLine() ?? "";
                                 Console.Write("    ");
                                 Console.Write("Saisissez le prenom : ");
                                 Console.Write("    ");
-                                string PreNomEleveSet = Console.ReadLine()?? "";
+                                string PreNomEleveSet = Console.ReadLine() ?? "";
                                 Console.Write("    ");
                                 Console.Write("Saisissez la date de naissance : ");
                                 Console.Write("    ");
-                                string DateDeNaissanceEleveSet = Console.ReadLine()?? "";
+                                string DateDeNaissanceEleveSet = Console.ReadLine() ?? "";
                                 Console.Write("    ");
                                 Console.Write("Saisissez vos appreciations : ...");
                                 Console.Write("    ");
-                                string AppreciationEleve = Console.ReadLine()?? "";
+                                string AppreciationEleve = Console.ReadLine() ?? "";
                                 Console.Write("    ");
 
 
 
                                 Eleves NewEleve = new Eleves();
-                                NewEleve.AjouterEleve(NomEleveSet, PreNomEleveSet, DateDeNaissanceEleveSet);
-                               // NewEleve.LireDonneesJson();
+                                NewEleve.AjouterEleve(NomEleveSet, PreNomEleveSet, DateDeNaissanceEleveSet, AppreciationEleve );
+                                // NewEleve.LireDonneesJson();
                                 NewEleve._EleveEnregistrerDonneesJson();
 
 
@@ -161,7 +165,8 @@ namespace Application_wild_student
                             else if (ChoixOptionInt == 4)
                             {
 
-                            } else
+                            }
+                            else
                             {
                                 Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine();
@@ -174,7 +179,8 @@ namespace Application_wild_student
 
 
 
-                        } else
+                        }
+                        else
                         {
                             Console.Clear();
                             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -208,8 +214,9 @@ namespace Application_wild_student
 
 
                     }
-                
-                } else if (ChoixOption == "2" && Correct)
+
+                }
+                else if (ChoixOption == "2" && Correct)
                 {
                     while (true)
                     {
@@ -260,19 +267,19 @@ namespace Application_wild_student
                                 Console.Write("    ");
                                 string NomCoursSet = Console.ReadLine() ?? "";
                                 Console.Write("    ");
-                               
+
                                 Cours NewCours = new Cours(NomCoursSet);
                                 NewCours.AddCours(NomCoursSet);
                                 // NewEleve.LireDonneesJson();
                                 NewCours._CourSaveOnJsonFile();
 
-                                
+
                             }
                             else if (ChoixOptionInt == 3)
                             {
 
                             }
-                            
+
                             else
                             {
                                 Console.ForegroundColor = ConsoleColor.Red;
@@ -324,12 +331,12 @@ namespace Application_wild_student
                 }
                 else
                 {
-                    Console.ForegroundColor= ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write("    ");
                     Console.Write("Saisissez les options disponibles, Appuyez enter pour continuer : ... ");
                     Console.ResetColor();
                     ChoixOption = Console.ReadLine() ?? "";
-                    Console.Clear() ;   
+                    Console.Clear();
                 }
 
 
